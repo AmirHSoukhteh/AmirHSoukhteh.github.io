@@ -1,8 +1,8 @@
 export const homeConfig = {
   greeting: "Amir Hossein Soukhteh",
-  description: "A passionate frontend developer with a keen eye for design and a love for creating beautiful, functional web experiences.",
+  description: "A curious data analyst who enjoys exploring data, solving problems, and finding insights that can lead to meaningful decisions.",
   buttons: {
     viewProjects: "View Projects",
-    readPosts: "Read Posts"
+    readPosts: "View Projects"
   }
 } as const 
