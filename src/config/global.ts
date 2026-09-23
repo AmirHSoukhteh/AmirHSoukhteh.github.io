@@ -28,11 +28,12 @@ export const globalConfig = {
   },
   footer: {
     aria: "Footer Navigation",
-    copyright: "© 2025 AmirHossein Soukhteh. All rights reserved ",
+    copyright: "© 2026 AmirH Soukhteh. All rights reserved ",
     social: {
-      twitter: "#",
-      github: "#",
-      email: "[EMAIL_ADDRESS]"
+      // twitter: "#",
+      telegram: "https://t.me/AHSoukhteh",
+      github: "https://github.com/AmirHSoukhteh",
+      email: "AHSoukhteh@gmail.com"
     }
   }
 } as const; 
