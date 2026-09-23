@@ -46,7 +46,7 @@ function ThemeAwareImage() {
   }
 
   return (
-    <div className="relative w-[700px] h-[700px]">
+    <div className="relative w-[500px] h-[500px]">
       <img
         src={imageSrc}
         alt="Tech background"
@@ -101,10 +101,10 @@ export default function HomeContent() {
             </Link>
 
             <Link
-              href="/posts"
+              href="/projects"
               className="group inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-900 bg-white border border-neutral-300 rounded-lg hover:bg-neutral-50 dark:bg-neutral-900 dark:text-white dark:border-neutral-700 dark:hover:bg-neutral-800 transition-all duration-300 hover:scale-105 cursor-pointer"
             >
-              {homeConfig.buttons.readPosts}
+              {homeConfig.buttons.viewProjects}
               <svg 
                 className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" 
                 fill="none" 
