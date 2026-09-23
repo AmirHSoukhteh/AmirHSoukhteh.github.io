@@ -1,7 +1,7 @@
 export const globalConfig = {
   site: {
     name: "Your Portfolio Name",
-    author: "Your Name",
+    author: "AmirH Soukhteh",
     description: "A brief description of your portfolio website",
     url: "/"
   },
@@ -28,7 +28,7 @@ export const globalConfig = {
   },
   footer: {
     aria: "Footer Navigation",
-    copyright: "© 2025 Your Name. All rights reserved ",
+    copyright: "© 2025 AmirHossein Soukhteh. All rights reserved ",
     social: {
       twitter: "#",
       github: "#",
