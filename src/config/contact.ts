@@ -6,9 +6,9 @@ export const contactConfig = {
   address: "123 Main Street, City, Country",
   social: [
     {
-      name: "Twitter",
+      name: "telegram",
       url: "#!",
-      icon: "twitter"
+      icon: "telegram"
     },
     {
       name: "LinkedIn",
