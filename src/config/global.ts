@@ -17,10 +17,6 @@ export const globalConfig = {
         href: "/projects"
       },
       {
-        title: "Posts",
-        href: "/posts"
-      },
-      {
         title: "About",
         href: "/about"
       }
