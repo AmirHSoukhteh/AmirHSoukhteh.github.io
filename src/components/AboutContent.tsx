@@ -1,25 +1,25 @@
-import Image from "next/image";
-import { aboutConfig } from "@/config/about";
+import Image from 'next/image';
+import { aboutConfig } from '@/config/about';
 
 export default function AboutContent() {
   return (
-    <section className="relative z-20 w-[896px] mx-auto mt-32 mb-12">
-      <div className="relative z-20 w-full mx-auto lg:mx-0">
-        <h2 className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 sm:text-3xl lg:text-4xl">
+    <section className="relative z-20 mx-auto mt-28 mb-16 w-full max-w-5xl px-4 sm:mt-32 sm:px-6 lg:px-8">
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 sm:text-4xl">
           {aboutConfig.title}
-        </h2>
+        </h1>
 
-        <div className="flex flex-col md:flex-row gap-8 mt-3 sm:mt-4 lg:mt-6">
-          <div className="w-full md:w-1/2 flex flex-col">
-            <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400 sm:leading-7 lg:leading-8 sm:text-base lg:text-lg">
+        <div className="mt-7 grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-14">
+          <div className="min-w-0">
+            <p className="text-base leading-7 text-neutral-600 dark:text-neutral-400 sm:text-lg sm:leading-8">
               {aboutConfig.description}
             </p>
 
-            <div className="mt-auto pt-4 flex flex-wrap gap-2">
-              {aboutConfig.skills.map((skill, index) => (
+            <div className="mt-7 flex flex-wrap gap-2">
+              {aboutConfig.skills.map((skill) => (
                 <span
-                  key={index}
-                  className="px-3 py-1 text-sm bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-200 rounded-full"
+                  key={skill}
+                  className="rounded-full bg-neutral-200 px-3 py-1.5 text-sm text-neutral-700 dark:bg-neutral-800 dark:text-neutral-200"
                 >
                   {skill}
                 </span>
@@ -27,14 +27,14 @@ export default function AboutContent() {
             </div>
           </div>
 
-          <div className="w-full md:w-1/2 flex justify-end">
-            <div className="relative w-[360px] h-[360px]">
+          <div className="flex min-w-0 justify-center md:justify-end">
+            <div className="relative aspect-square w-full max-w-[22.5rem] overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800">
               <Image
-                src="/assets/images/about/coder.jpg"
+                src={aboutConfig.image}
                 alt="Profile"
                 fill
-                sizes="(max-width: 768px) 100vw, 360px"
-                className="object-cover rounded-xl"
+                sizes="(max-width: 768px) 90vw, 360px"
+                className="object-cover"
                 priority
               />
             </div>
@@ -42,100 +42,66 @@ export default function AboutContent() {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row mt-20">
-        <div className="flex-1">
-          <h2 className="mb-2 text-2xl font-bold dark:text-neutral-200">
+      <div className="mt-20 grid grid-cols-1 gap-12 md:grid-cols-[minmax(0,1fr)_minmax(16rem,0.38fr)] md:gap-14">
+        <div className="min-w-0">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">
             {aboutConfig.experience.title}
           </h2>
 
-          <div className="py-10">
+          <div className="mt-8">
             {aboutConfig.experience.items.map((item, index) => (
               <div
-                key={index}
-                className="pb-10 border-l border-gray-200 last:border-l-0 dark:border-neutral-700"
+                key={`${item.period}-${item.role}`}
+                className="relative border-l border-neutral-200 pb-10 pl-10 last:pb-0 dark:border-neutral-700"
               >
-                <div className="relative flex flex-col justify-start pl-12">
-                  <div className="absolute top-0 left-0 z-40 flex items-center justify-center -translate-x-1/2 bg-white border rounded-full dark:bg-neutral-950 w-14 h-14 border-neutral-300 dark:border-neutral-700">
-                    <svg
-                      className="w-8 h-8 text-neutral-700 dark:text-neutral-300"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                      />
-                    </svg>
-                  </div>
-
-                  <p className="text-xs uppercase text-neutral-400 dark:text-neutral-500 tracking-widest">
-                    {item.period}
-                  </p>
-
-                  <h3 className="my-1 text-lg font-bold dark:text-neutral-100">
-                    {item.role}
-                  </h3>
-
-                  <p className="mb-1 text-sm font-medium dark:text-neutral-300">
-                    {item.company}
-                  </p>
-
-                  <p className="text-sm font-light text-neutral-600 dark:text-neutral-400">
-                    {item.description}
-                  </p>
+                <div className="absolute left-0 top-0 flex h-11 w-11 -translate-x-1/2 items-center justify-center rounded-full border border-neutral-300 bg-white dark:border-neutral-700 dark:bg-neutral-950">
+                  <svg className="h-6 w-6 text-neutral-700 dark:text-neutral-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
                 </div>
+
+                <p className="text-xs font-medium uppercase tracking-[0.15em] text-neutral-400 dark:text-neutral-500">
+                  {item.period}
+                </p>
+                <h3 className="mt-2 text-lg font-bold text-neutral-900 dark:text-neutral-100">
+                  {item.role}
+                </h3>
+                <p className="mt-1 text-sm font-medium text-neutral-700 dark:text-neutral-300">
+                  {item.company}
+                </p>
+                <p className="mt-2 max-w-2xl text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+                  {item.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="w-[360px] ml-8">
-          <h2 className="mb-2 text-2xl font-bold dark:text-neutral-200">
+        <aside className="min-w-0">
+          <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">
             {aboutConfig.connect.title}
           </h2>
+          <p className="mt-6 text-base leading-7 text-neutral-600 dark:text-neutral-400">
+            {aboutConfig.connect.description}
+          </p>
 
-          <div className="py-[30px]">
-            <p className="text-sm leading-6 text-gray-600 dark:text-neutral-400 sm:leading-7 lg:leading-8 sm:text-base lg:text-lg">
-              {aboutConfig.connect.description
-                .split("follow us on twitter")
-                .map((part, index, array) => {
-                  if (index === array.length - 1) {
-                    const [beforeEmail, afterEmail] = part.split("email");
-
-                    return (
-                      <span key={index}>
-                        {beforeEmail}
-                        <a
-                          href={aboutConfig.connect.links.email.url}
-                          className="text-indigo-600 underline"
-                        >
-                          {aboutConfig.connect.links.email.text}
-                        </a>
-                        {afterEmail}
-                      </span>
-                    );
-                  }
-
-                  return (
-                    <span key={index}>
-                      {part}
-                      <a
-                        href={aboutConfig.connect.links.twitter.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-indigo-600 underline"
-                      >
-                        {aboutConfig.connect.links.twitter.text}
-                      </a>
-                    </span>
-                  );
-                })}
-            </p>
+          <div className="mt-6 flex flex-wrap gap-4 text-sm font-medium">
+            <a
+              href={aboutConfig.connect.links.twitter.url}
+              target="_blank"
+              rel="noreferrer"
+              className="text-indigo-600 underline underline-offset-4 hover:text-indigo-500"
+            >
+              {aboutConfig.connect.links.twitter.text}
+            </a>
+            <a
+              href={aboutConfig.connect.links.email.url}
+              className="text-indigo-600 underline underline-offset-4 hover:text-indigo-500"
+            >
+              {aboutConfig.connect.links.email.text}
+            </a>
           </div>
-        </div>
+        </aside>
       </div>
     </section>
   );

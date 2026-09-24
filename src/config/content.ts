@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Portfolio",
+  name: "AmirHSoukhteh",
   description: "A showcase of my work and thoughts",
   nav: {
     home: "Home",
@@ -12,7 +12,7 @@ export const siteConfig = {
     description: "A passionate frontend developer with a keen eye for design and a love for creating beautiful, functional web experiences.",
     buttons: {
       viewProjects: "View Projects",
-      readPosts: "Read Posts"
+      myWorks: "Read Posts"
     }
   },
   projects: {

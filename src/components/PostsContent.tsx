@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { postsConfig } from "@/config/posts";
 import PostsSearch from "./PostsSearch";
@@ -11,42 +12,21 @@ export default function PostsContent() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
-  const currentPosts = postsConfig.posts.slice(
-    startIndex,
-    startIndex + POSTS_PER_PAGE
-  );
+  const currentPosts = postsConfig.posts.slice(startIndex, startIndex + POSTS_PER_PAGE);
 
   return (
-    <section className="relative z-20 w-[896px] mx-auto mt-32 mb-12">
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 sm:text-3xl lg:text-4xl">
+    <section className="relative z-20 mx-auto mt-28 mb-16 w-full max-w-5xl px-4 sm:mt-32 sm:px-6 lg:px-8">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 sm:text-4xl">
           {postsConfig.title}
-        </h2>
-        {/* <div className="relative">
-          <input
-            type="text"
-            placeholder={postsConfig.searchPlaceholder}
-            className="w-64 px-4 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-400 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-100 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-          />
-          <svg
-            className="absolute right-3 top-2.5 w-4 h-4"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="text-neutral-600 dark:text-neutral-400"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
-        </div> */}
+        </h1>
+        <p className="mt-3 max-w-3xl text-base leading-7 text-neutral-600 dark:text-neutral-400 sm:text-lg sm:leading-8">
+          {postsConfig.description}
+        </p>
       </div>
 
-      <div className="flex flex-col items-stretch w-full gap-5">
-        {currentPosts.map((post, index) => (
+      <div className="flex w-full flex-col gap-5">
+        {currentPosts.map((post) => (
           <PostCard
             key={post.slug}
             title={post.title}
@@ -55,42 +35,40 @@ export default function PostsContent() {
             href={`/${post.slug}`}
             pattern="dots"
             imageUrl={post.image}
-            readingTime={parseInt(post.readTime)}
+            readingTime={parseInt(post.readTime, 10)}
           />
         ))}
       </div>
 
       {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-2 mt-8">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
           <button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
-            className={`px-3 py-1 text-sm font-medium text-neutral-600 dark:text-neutral-400 ${
-              currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+            className="rounded-lg px-3 py-2 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40 dark:text-neutral-400 dark:hover:bg-neutral-900"
           >
             {postsConfig.pagination.previous}
           </button>
-          {[...Array(totalPages)].map((_, index) => (
+
+          {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
             <button
-              key={index}
-              onClick={() => setCurrentPage(index + 1)}
-              aria-current={index + 1 === currentPage ? "page" : undefined}
-              className={`w-8 h-8 flex items-center justify-center rounded-full text-sm font-medium ${
-                index + 1 === currentPage
+              key={page}
+              onClick={() => setCurrentPage(page)}
+              aria-current={page === currentPage ? "page" : undefined}
+              className={`h-9 w-9 rounded-full text-sm font-medium transition-colors ${
+                page === currentPage
                   ? "bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900"
-                  : "text-neutral-600 dark:text-neutral-400"
+                  : "text-neutral-600 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-900"
               }`}
             >
-              {index + 1}
+              {page}
             </button>
           ))}
+
           <button
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
-            className={`px-3 py-1 text-sm font-medium text-neutral-600 dark:text-neutral-400 ${
-              currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+            className="rounded-lg px-3 py-2 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40 dark:text-neutral-400 dark:hover:bg-neutral-900"
           >
             {postsConfig.pagination.next}
           </button>
@@ -100,4 +78,4 @@ export default function PostsContent() {
       <PostsSearch />
     </section>
   );
-} 
+}

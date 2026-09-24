@@ -1,131 +1,94 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Link from "next/link";
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { homeConfig } from '@/config/home';
 
-// Move theme-related logic to this client component
 function ThemeAwareImage() {
   const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState('light');
   const [imageSrc, setImageSrc] = useState('/assets/images/tech-background-light.svg');
 
   useEffect(() => {
     setMounted(true);
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setTheme(savedTheme);
-      setImageSrc(savedTheme === 'light' ? '/assets/images/tech-background-light.svg' : '/assets/images/tech-background.svg');
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark');
-      setImageSrc('/assets/images/tech-background.svg');
-    }
-  }, []);
 
-  useEffect(() => {
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === 'class') {
-          const isDark = document.documentElement.classList.contains('dark');
-          setTheme(isDark ? 'dark' : 'light');
-          setImageSrc(isDark ? '/assets/images/tech-background.svg' : '/assets/images/tech-background-light.svg');
-        }
-      });
-    });
+    const updateImage = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      setImageSrc(
+        isDark
+          ? '/assets/images/tech-background.svg'
+          : '/assets/images/tech-background-light.svg',
+      );
+    };
 
+    updateImage();
+
+    const observer = new MutationObserver(updateImage);
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['class']
+      attributeFilter: ['class'],
     });
 
     return () => observer.disconnect();
   }, []);
 
   if (!mounted) {
-    return null;
+    return <div className="aspect-square w-full max-w-[30rem]" aria-hidden="true" />;
   }
 
   return (
-    <div className="relative w-[500px] h-[500px]">
+    <div className="relative aspect-square w-full max-w-[30rem]">
       <img
         src={imageSrc}
-        alt="Tech background"
-        className="w-full h-full animate-[float_15s_ease-in-out_infinite] hover:scale-125 transition-transform duration-300"
-        style={{
-          animation: 'float 15s ease-in-out infinite',
-          transform: 'scale(1.2)',
-        }}
+        alt=""
+        aria-hidden="true"
+        className="h-full w-full object-contain transition-transform duration-300 hover:scale-[1.03]"
       />
-      <style jsx>{`
-        @keyframes float {
-          0% { transform: scale(1.2); }
-          50% { transform: scale(1.3); }
-          100% { transform: scale(1.2); }
-        }
-      `}</style>
     </div>
   );
 }
 
-// Server component version of HomeContent
 export default function HomeContent() {
   return (
-    <div className="flex-1 flex items-center" style={{ transform: 'translateY(-50px)' }}>
-      <div className="flex flex-row items-center justify-between w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 gap-12">
-        <div className="w-[45%] text-left">
-          <h1 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+    <section className="flex flex-1 items-center pt-28 pb-16 sm:pt-32 lg:pt-28">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 px-4 sm:px-6 md:gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:px-8">
+        <div className="min-w-0 max-w-2xl">
+          <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
+            Data Analyst
+          </p>
+          <h1 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl md:text-5xl">
             {homeConfig.greeting}
           </h1>
-          <p className="mt-3 text-lg leading-7 text-neutral-600 dark:text-neutral-400">
+          <p className="mt-4 max-w-xl text-base leading-7 text-neutral-600 dark:text-neutral-400 sm:text-lg sm:leading-8">
             {homeConfig.description}
           </p>
-          <div className="flex flex-row gap-4 mt-4">
+
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/about"
-              className="group inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-neutral-900 rounded-lg hover:bg-neutral-800 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100 transition-all duration-300 hover:scale-105 cursor-pointer"
+              className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-neutral-900 px-4 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-neutral-800 hover:shadow-md dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100"
             >
               View About
-              <svg 
-                className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2.5} 
-                  d="M13 7l5 5m0 0l-5 5m5-5H6" 
-                />
+              <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </Link>
 
             <Link
               href="/projects"
-              className="group inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-900 bg-white border border-neutral-300 rounded-lg hover:bg-neutral-50 dark:bg-neutral-900 dark:text-white dark:border-neutral-700 dark:hover:bg-neutral-800 transition-all duration-300 hover:scale-105 cursor-pointer"
+              className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm font-medium text-neutral-900 transition-all duration-300 hover:bg-neutral-50 hover:shadow-md dark:border-neutral-700 dark:bg-neutral-900 dark:text-white dark:hover:bg-neutral-800"
             >
-              {homeConfig.buttons.viewProjects}
-              <svg 
-                className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2.5} 
-                  d="M13 7l5 5m0 0l-5 5m5-5H6" 
-                />
+              {homeConfig.buttons.myWorks}
+              <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </Link>
           </div>
         </div>
 
-        <div className="w-[45%] flex items-center justify-center bg-transparent">
+        <div className="flex min-w-0 justify-center lg:justify-end">
           <ThemeAwareImage />
         </div>
       </div>
-    </div>
+    </section>
   );
-} 
+}

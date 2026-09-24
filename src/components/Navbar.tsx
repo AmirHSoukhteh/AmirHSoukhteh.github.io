@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import ThemeToggle from './ThemeToggle';
 import { globalConfig } from '@/config/global';
@@ -15,114 +15,92 @@ export default function Navbar() {
     setMounted(true);
   }, []);
 
-  // Close menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
   }, [pathname]);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
 
   if (!mounted) {
     return null;
   }
 
   const isActive = (path: string) => {
-    if (path === '/') {
-      return pathname === '/';
-    }
+    if (path === '/') return pathname === '/';
     return pathname.startsWith(path);
   };
 
   return (
-    <header id="header" className="absolute top-0 z-50 w-full h-20">
-      <div className="flex items-center justify-between h-full max-w-7xl pl-6 pr-4 mx-auto border-b border-l-0 border-r-0 border-transparent select-none lg:border-r lg:border-l lg:rounded-b-xl">
-        <Link href="/" className="h-5 text-base group relative z-30 flex items-center space-x-1.5 text-black dark:text-white font-semibold whitespace-nowrap">
-          <span className="text-xl -translate-y-0.5 group-hover:-rotate-12 group-hover:scale-[1.2] ease-in-out duration-300">✦</span>
+    <header className="absolute inset-x-0 top-0 z-50 h-20">
+      <div className="mx-auto flex h-full w-full max-w-6xl items-center justify-between border-b border-transparent px-4 sm:px-6 lg:rounded-b-xl lg:border-l lg:border-r lg:px-8">
+        <Link
+          href="/"
+          className="relative z-50 flex shrink-0 items-center gap-1.5 text-base font-semibold text-black dark:text-white"
+          aria-label={`${globalConfig.site.author} home`}
+        >
+          <span className="text-xl -translate-y-0.5 transition-transform duration-300 group-hover:-rotate-12">
+            ✦
+          </span>
           <span className="-translate-y-0.5">{globalConfig.site.author}</span>
         </Link>
 
-        <div
-          id="mobileMenuBackground"
-          onClick={closeMenu}
-          className={`fixed inset-0 z-20 w-screen h-screen duration-300 ease-out bg-white/90 dark:bg-neutral-950/90 ${
-            isMenuOpen ? 'block' : 'hidden'
-          }`}
-        ></div>
-
-        <nav className="relative z-30 flex flex-row-reverse justify-start w-full text-sm sm:justify-end text-neutral-500 dark:text-neutral-400 sm:flex-row">
-          <div
-            id="openMenu"
-            onClick={toggleMenu}
-            className={`flex flex-col items-end justify-center w-6 h-6 ml-4 cursor-pointer sm:hidden ${
-              isMenuOpen ? 'hidden' : 'block'
-            }`}
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen((open) => !open)}
+            className="relative z-50 inline-flex h-10 w-10 items-center justify-center rounded-lg text-neutral-700 transition-colors hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-900 sm:hidden"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           >
-            <svg
-              className="w-8 h-8 dark:text-neutral-200"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M4 8h16M4 16h16"></path>
-            </svg>
-          </div>
+            {isMenuOpen ? (
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M6 6l12 12M18 6L6 18" />
+              </svg>
+            ) : (
+              <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M4 7h16M4 12h16M4 17h16" />
+              </svg>
+            )}
+          </button>
 
-          <div
-            id="closeMenu"
-            onClick={toggleMenu}
-            className={`flex flex-col items-end justify-center w-6 h-6 ml-4 -translate-x-1 cursor-pointer sm:hidden ${
-              isMenuOpen ? 'block' : 'hidden'
-            }`}
+          {isMenuOpen && (
+            <button
+              type="button"
+              aria-label="Close navigation menu"
+              onClick={() => setIsMenuOpen(false)}
+              className="fixed inset-0 z-30 bg-white/80 backdrop-blur-sm dark:bg-neutral-950/80 sm:hidden"
+            />
+          )}
+
+          <nav
+            id="mobile-navigation"
+            aria-label={globalConfig.navigation.aria}
+            className={[
+              'absolute left-4 right-4 top-[calc(100%-4px)] z-40 rounded-2xl border border-dashed border-neutral-300 bg-white/95 p-2 shadow-lg backdrop-blur-sm dark:border-neutral-700 dark:bg-neutral-950/95 sm:static sm:flex sm:items-center sm:gap-1 sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none sm:backdrop-blur-0 dark:sm:bg-transparent',
+              isMenuOpen ? 'block' : 'hidden sm:flex',
+            ].join(' ')}
           >
-            <svg
-              className="w-6 h-6 text-neutral-600 dark:text-neutral-200"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-          </div>
-
-          <div
-            id="menu"
-            className={`fixed top-[75px] ease-out duration-300 sm:top-0 w-full left-0 sm:py-0 pt-7 pb-4 dm:mx-0 left-0 z-40 flex-col items-end justify-start ${
-              isMenuOpen ? 'flex' : 'hidden'
-            } w-full h-auto text-sm sm:text-base sm:h-auto sm:relative sm:flex-row sm:flex sm:text-sm sm:w-auto sm:pr-0 sm:pt-0`}
-          >
-            <div className="absolute inset-0 top-0 right-0 block w-full h-full px-3 sm:hidden">
-              <div className="relative w-full h-full bg-white border border-dashed border-neutral-300 dark:border-neutral-700 backdrop-blur-sm rounded-xl dark:bg-neutral-950"></div>
-            </div>
-
             {globalConfig.navigation.items.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={closeMenu}
-                className={`relative flex items-center justify-center w-full px-3 py-2 font-medium tracking-wide text-center duration-200 ease-out sm:py-0 sm:mb-0 md:w-auto hover:text-neutral-900 dark:hover:text-white ${
-                  isActive(item.href) ? 'text-neutral-900 dark:text-white' : ''
-                }`}
+                onClick={() => setIsMenuOpen(false)}
+                className={[
+                  'block rounded-xl px-4 py-3 text-center text-sm font-medium tracking-wide transition-colors sm:px-3 sm:py-2',
+                  isActive(item.href)
+                    ? 'bg-neutral-100 text-neutral-900 dark:bg-neutral-900 dark:text-white'
+                    : 'text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white',
+                ].join(' ')}
               >
                 {item.title}
               </Link>
             ))}
-          </div>
+          </nav>
 
-          <ThemeToggle />
-        </nav>
+          <div className="relative z-50">
+            <ThemeToggle />
+          </div>
+        </div>
       </div>
     </header>
   );
-} 
+}

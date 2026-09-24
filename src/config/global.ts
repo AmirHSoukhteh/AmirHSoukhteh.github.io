@@ -28,9 +28,12 @@ export const globalConfig = {
   },
   footer: {
     aria: "Footer Navigation",
-    copyright: "© 2026 AmirH Soukhteh. All rights reserved ",
+    date: new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit'
+    }).replace(/ /g, '-').replace(',', ''),
     social: {
-      // twitter: "#",
       telegram: "https://t.me/AHSoukhteh",
       github: "https://github.com/AmirHSoukhteh",
       email: "AHSoukhteh@gmail.com"
