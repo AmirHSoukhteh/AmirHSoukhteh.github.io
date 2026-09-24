@@ -27,7 +27,7 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
     `${postSlug}.html`,
   );
 
-  let postHtml = post.html;
+  let postHtml: string = post.html;
 
   try {
     postHtml = await fs.readFile(postHtmlPath, 'utf8');
