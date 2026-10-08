@@ -1,32 +1,32 @@
 export const projectsConfig = {
   title: "Projects",
-  description: "Here you can showcase your best work. Each project should include a brief description, the technologies used, and any notable achievements. This helps potential clients or employers understand your capabilities.",
+  description: "Explore my projects in data, analytics, and technology. Click a project to see the work behind it.",
   backButton: "Back to Home",
   noProjects: "No projects found.",
   items: [
     {
-      title: "Project One",
-      description: "A brief description of your first project. Explain what it does and what technologies you used.",
-      href: "#!",
-      imageUrl: "/assets/images/projects/project1.jpg"
+      title: "HR Tableau Dashboard",
+      description: "An interactive HR Analytics dashboard built in Tableau to explore employee demographics, performance, satisfaction, and attrition. It transforms HR data into clear visual insights to help identify workforce trends and support data-driven decision-making.",
+      href: "https://github.com/AmirHSoukhteh/Tableau-Works",
+      imageUrl: "/assets/images/projects/thumbnail-HR.jpg"
     },
     {
-      title: "Project Two",
-      description: "Describe your second project here. Highlight the key features and your role in development.",
-      href: "#!",
-      imageUrl: "/assets/images/projects/project2.jpg"
+      title: "Sales Tableau Dashboard",
+      description: "An interactive sales dashboard built to analyze revenue, sales performance, product trends, and regional performance. It turns sales data into actionable insights, helping identify growth opportunities and support data-driven business decisions.",
+      href: "https://github.com/AmirHSoukhteh/Tableau-Works",
+      imageUrl: "/assets/images/projects/thumbnail-sales.jpg"
     },
     {
-      title: "Project Three",
-      description: "Share details about your third project. What problems did it solve? What was the outcome?",
-      href: "#!",
-      imageUrl: "/assets/images/projects/project3.png"
+      title: "Medallion Data Warehouse Pipeline",
+      description: "Built a multi-stage ETL data pipline using SQL Server Management Studio(SSMS), organizing raw data into Bronze, Silver, and Gold layers to deliver structured, business-ready analytics.",
+      href: "https://github.com/AmirHSoukhteh/sql-data-warehouse",
+      imageUrl: "/assets/images/projects/thumbnail-datawarehouse.jpg"
     },
     {
-      title: "Project Four",
-      description: "Share details about your third project. What problems did it solve? What was the outcome?",
-      href: "#!",
-      imageUrl: "/assets/images/projects/project3.png"
+      title: "SQL Data Exploration & Analytics",
+      description: "A practical SQL analytics toolkit for exploring relational data, uncovering trends, building metrics, segmenting customers, and generating actionable insights through well-structured SQL queries.",
+      href: "https://github.com/AmirHSoukhteh/sql-data-analytics",
+      imageUrl: "/assets/images/projects/data-analytics.jpeg"
     }
   ]
 } as const; 
