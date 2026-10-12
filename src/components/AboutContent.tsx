@@ -113,7 +113,7 @@ export default function AboutContent() {
                   key={`${item.period}-${item.role}`}
                   className="relative border-l border-neutral-200 pb-10 pl-10 last:pb-0 dark:border-neutral-700"
                 >
-                  <div className="absolute left-0 top-0 flex h-11 w-11 -translate-x-1/2 items-center justify-center overflow-hidden rounded-full border border-neutral-300 bg-white dark:border-neutral-700 dark:bg-neutral-950">
+                  <div className="absolute left-0 top-0 flex h-11 w-11 -translate-x-1/2 items-center justify-center overflow-hidden rounded-md border border-neutral-300 bg-white dark:border-neutral-700 dark:bg-neutral-950">
                     <Image
                       src="/assets/images/Sbu-logo.svg"
                       alt="Shahid Beheshti University"
