@@ -32,7 +32,8 @@ export const globalConfig = {
     social: {
       telegram: "https://t.me/AHSoukhteh",
       github: "https://github.com/AmirHSoukhteh",
-      email: "AHSoukhteh@gmail.com"
+      email: "AHSoukhteh@gmail.com",
+      linkedin: "https://www.linkedin.com/in/amir-hossein-soukhteh/"
     }
   }
 } as const; 

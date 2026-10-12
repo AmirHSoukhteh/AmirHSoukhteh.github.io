@@ -37,5 +37,37 @@ export const projectsConfig = {
       imageUrl: "/assets/images/projects/data-analytics.jpeg",
       categories: ["SQL", "Data Analytics"],
     },
+    {
+      title: "SQL BikeStore Inventory Durability",
+      description:
+        "SQL-based inventory management system to calculate product durability (days until stock depletion) for a bike retail business.",
+      href: "https://github.com/AmirHSoukhteh/BikeSale-Inventory-Analysis-SQL",
+      imageUrl: "/assets/images/projects/BikeStore SQL Analytics Workspace.png",
+      categories: ["SQL", "Data Analytics"],
+    },
+    {
+      title: "Advertising Analyst",
+      description:
+        "Analysis of advertising spending and sales data using statistical and mathematical methods.",
+      href: "https://github.com/AmirHSoukhteh/advertising-analysis",
+      imageUrl: "/assets/images/projects/Cinematic Data Analytics Workspace.png",
+      categories: ["Python", "Data Analytics", "Statistics", 'Machine Learning'],
+    },
+    {
+      title: "Car Insurance Claim",
+      description:
+        "This project uses machine learning to predict whether a car insurance customer will file a claim based on their demographic information, driving history, and vehicle details. We compare Decision Tree and SVM classifiers, optimize their performance, and identify the most important features for prediction.",
+      href: "https://github.com/AmirHSoukhteh/Car-Insurance-Claim",
+      imageUrl: "/assets/images/projects/Car Insurance Prediction Workspace.png",
+      categories: ["Python", "Data Analytics", "Machine Learning"],
+    },
+    {
+      title: "Image Compression with K-Means",
+      description:
+        "An implementation of the K-Means Clustering algorithm from scratch, applied to color quantization and image compression. This project reduces the storage footprint of an image by limiting its visual spectrum to a fixed number of representative colors (centroids) without destroying its structural integrity.",
+      href: "https://github.com/AmirHSoukhteh/Car-Insurance-Claim",
+      imageUrl: "/assets/images/projects/Image Compression with K-Means Clustering.png",
+      categories: ["Python", "Machine Learning"],
+    }
   ],
 } as const;

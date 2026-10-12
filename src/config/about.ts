@@ -4,7 +4,7 @@ export const aboutConfig = {
   title: "About Me",
 
   description:
-    "I’m a Data Science student with a strong background in mathematics and a growing interest in Data Analytics and Business Intelligence. I enjoy working with data across different fields and turning complex datasets into meaningful insights. My goal is to understand the data, tell its story, and help people make better, data-driven decisions. I also enjoy the creative side of analytics—designing clear and intuitive dashboards that make insights easier to understand and act on.",
+    "I’m a Data Science student with a strong background in mathematics and a growing interest in Data Analytics, Quants and Machine Learning. I enjoy working with data across different fields and turning complex datasets into meaningful insights. My goal is to understand the data, tell its story, and help people make better, data-driven decisions. I also enjoy the creative side of analytics—designing clear and intuitive dashboards that make insights easier to understand and act on.",
 
   image: "/assets/images/about.jpg",
 
@@ -86,27 +86,27 @@ export const aboutConfig = {
     title: "Let's Connect",
 
     description:
-      "I’m interested in junior and internship opportunities in Data Analytics and Business Intelligence. If you’re working on a data-driven product, team, or project, feel free to get in touch.",
+      "I’m interested in junior and internship opportunities in Data Analytics and Quantitative Analyst. If you’re working on a data-driven product, team, or project, feel free to get in touch.",
 
     links: {
       github: {
         text: "GitHub",
-        url: "YOUR_GITHUB_URL",
+        url: "https://github.com/AmirHSoukhteh",
       },
 
       telegram: {
         text: "Telegram",
-        url: "YOUR_GITHUB_URL",
+        url: "https://t.me/AHSoukhteh",
       },
 
       linkedin: {
         text: "LinkedIn",
-        url: "YOUR_LINKEDIN_URL",
+        url: "https://www.linkedin.com/in/amir-hossein-soukhteh/",
       },
 
       email: {
         text: "Email",
-        url: "mailto:YOUR_EMAIL",
+        url: "mailto:AHSoukhteh@gmail.com",
       },
     },
   },

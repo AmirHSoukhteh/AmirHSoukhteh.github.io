@@ -10,6 +10,7 @@ const filters = [
   'Python',
   'Tableau',
   'Power BI',
+  'Statistics',
   'Machine Learning',
   'Data Engineering',
   'Data Analytics',
