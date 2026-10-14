@@ -65,7 +65,7 @@ export const projectsConfig = {
       title: "Image Compression with K-Means",
       description:
         "An implementation of the K-Means Clustering algorithm from scratch, applied to color quantization and image compression. This project reduces the storage footprint of an image by limiting its visual spectrum to a fixed number of representative colors (centroids) without destroying its structural integrity.",
-      href: "https://github.com/AmirHSoukhteh/Car-Insurance-Claim",
+      href: "https://github.com/AmirHSoukhteh/ImageCompression",
       imageUrl: "/assets/images/projects/Image Compression with K-Means Clustering.png",
       categories: ["Python", "Machine Learning"],
     }
